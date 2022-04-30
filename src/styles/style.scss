@@ -10,8 +10,9 @@
 /* Component */
 @import './components/upload-btn';
 
-/* Sections */
-@import './sections/header';
+/* Layouts */
+@import './layouts/header';
 
 /* Util */
-@import './utils/helpers';
+@import './utils/display';
+@import './utils/sr-only';

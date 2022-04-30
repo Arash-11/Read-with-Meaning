@@ -1,10 +1,5 @@
-$padding-vertical: 0.5rem;
-$padding-horizontal: 1.5rem;
-
-%border-styles {
-  border: solid 1px #000;
-  border-radius: 4px;
-}
+$padding-vertical: 0.6rem;
+$padding-horizontal: 3rem;
 
 .upload-btn {
   position: relative;
@@ -14,31 +9,43 @@ $padding-horizontal: 1.5rem;
   }
 
   &__trigger {
-    @extend %border-styles;
+    border: solid 1px #000;
+    border-radius: 4px;
     padding: $padding-vertical $padding-horizontal;
   }
 
   &__options {
-    @extend %border-styles;
+    padding-top: 7px;
     width: 100%;
-    display: none;
+    visibility: hidden;
     position: absolute;
-    /*
-      calc(100% + $padding-vertical) fixes the top of options container to the bottom of the button,
-      the added 10px is to create a little gap
-    */
-    top: calc(100% + $padding-vertical + 7px);
+    /* calc(100% + $padding-vertical) fixes the top of
+      options container to the bottom of the button. */
+    top: calc(100% + $padding-vertical);
 
     .upload-btn:hover & {
-      display: block;
+      visibility: visible;
+    }
+  }
+
+  &__options > li {
+    padding: $padding-vertical calc($padding-horizontal / 2);
+    border-style: none solid;
+    border-width: 1px;
+    text-align: center;
+
+    &:hover {
+      background-color: lightgray;
     }
 
-    & > li {
-      padding: $padding-vertical calc($padding-horizontal / 2);
-      
-      &:hover {
-        background-color: lightgray;
-      }
+    &:first-child {
+      border-top-style: solid;
+      border-radius: 4px 4px 0 0;
+    }
+
+    &:last-child {
+      border-bottom-style: solid;
+      border-radius: 0 0 4px 4px;
     }
   }
 }
