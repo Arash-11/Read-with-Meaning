@@ -1,0 +1,44 @@
+$padding-vertical: 0.5rem;
+$padding-horizontal: 1.5rem;
+
+%border-styles {
+  border: solid 1px #000;
+  border-radius: 4px;
+}
+
+.upload-btn {
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__trigger {
+    @extend %border-styles;
+    padding: $padding-vertical $padding-horizontal;
+  }
+
+  &__options {
+    @extend %border-styles;
+    width: 100%;
+    display: none;
+    position: absolute;
+    /*
+      calc(100% + $padding-vertical) fixes the top of options container to the bottom of the button,
+      the added 10px is to create a little gap
+    */
+    top: calc(100% + $padding-vertical + 7px);
+
+    .upload-btn:hover & {
+      display: block;
+    }
+
+    & > li {
+      padding: $padding-vertical calc($padding-horizontal / 2);
+      
+      &:hover {
+        background-color: lightgray;
+      }
+    }
+  }
+}

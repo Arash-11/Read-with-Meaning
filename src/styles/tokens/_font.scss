@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Young Serif';
+  src: url(../assets/fonts/youngserif.woff2) format('woff2'),
+       url(../assets/fonts/youngserif.woff) format('woff');
+}
+
+:root {
+  font-size: 100%;
+  --font-scale-ratio: 1.2;
+
+  --font-size-0: 1rem;
+  --font-size-1: calc(var(--font-size-0) * var(--font-scale-ratio));
+  --font-size-2: calc(var(--font-size-1) * var(--font-scale-ratio));
+  --font-size-3: calc(var(--font-size-2) * var(--font-scale-ratio));
+  --font-size-4: calc(var(--font-size-3) * var(--font-scale-ratio));
+  --font-size-5: calc(var(--font-size-4) * var(--font-scale-ratio));
+  --font-size-6: calc(var(--font-size-5) * var(--font-scale-ratio));
+  --font-size-7: calc(var(--font-size-6) * var(--font-scale-ratio));
+
+  --font-family-main: 'Young Serif', serif;
+}
+
+body {
+  font-family: var(--font-family-main);
+}

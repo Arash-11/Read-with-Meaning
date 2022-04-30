@@ -1,0 +1,30 @@
+$bp-small: 480px;
+$bp-medium: 720px;
+$bp-large: 1024px;
+
+@mixin media($mobile: false, $tablet-sm: false, $tablet-lg: false) {
+  @if $mobile {
+    @media screen and (max-width: $bp-small) { @content; }
+  } @else if $tablet-sm {
+    @media screen and (max-width: $bp-medium) { @content; }
+  } @else if $tablet-lg {
+    @media screen and (max-width: $bp-large) { @content; }
+  }
+}
+
+html::before {
+  display: none;
+  content: 'L';
+
+  @include media($tablet-lg: true) {
+    content: 'M';
+  }
+
+  @include media($tablet-sm: true) {
+    content: 'S';
+  }
+
+  @include media($mobile: true) {
+    content: 'XS';
+  }
+}
