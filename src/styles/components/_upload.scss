@@ -1,0 +1,79 @@
+$padding-vertical: 0.6rem;
+$padding-horizontal: 3rem;
+$border-radius: 4px;
+
+.upload {
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__btn {
+    position: relative;
+    appearance: none;
+    background-color: #fff;
+    padding: $padding-vertical $padding-horizontal;
+    border: solid 1px #000;
+    border-radius: $border-radius;
+    z-index: 1;
+  }
+
+  &__options {
+    padding-top: 7px;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0.3;
+    position: absolute;
+    top: 100%;
+    transform: translateY(-50%);
+    // Handle hover intent by creating a 200ms delay --
+    // this prevents the dropdown from appearing for "drive-by" mouseovers.
+    transition: all 100ms 200ms ease-out;
+
+    .upload:hover &,
+    .upload:focus-within & {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__options > li {
+    border-style: none solid;
+    border-width: 1px;
+    text-align: center;
+
+    &:first-child {
+      border-top-style: solid;
+      border-radius: $border-radius $border-radius 0 0;
+    }
+
+    &:last-child {
+      border-bottom-style: solid;
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+  }
+
+  &__options > li:first-child > a {
+    border-radius: $border-radius $border-radius 0 0;
+  }
+
+  &__options > li:last-child > a {
+    border-radius: 0 0 $border-radius $border-radius;
+  }
+
+  &__options > li > a {
+    display: inline-block;
+    padding: $padding-vertical calc($padding-horizontal / 2);
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      background-color: lightgray;
+    }
+  }
+}

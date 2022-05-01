@@ -10,7 +10,7 @@
   font-size: var(--font-size-4);
 }
 
-.header__upload-btn {
-  @extend .upload-btn;
+.header__upload {
+  @extend .upload;
   margin-right: 5rem;
 }

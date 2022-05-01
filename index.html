@@ -9,11 +9,23 @@
   <body>
     <header class="header">
       <h1 class="logo">Read with Meaning</h1>
-      <div class="header__upload-btn">
-        <span class="upload-btn__trigger">upload</span>
-        <ul class="upload-btn__options" role="list">
-          <li>paste text</li>
-          <li>add URL</li>
+      <div class="header__upload">
+        <!-- Handle aria-expanded with JS -->
+        <button
+          class="upload__btn"
+          aria-controls="upload-options"
+          aria-expanded="false"
+        >
+          upload
+        </button>
+        <ul
+          class="upload__options"
+          role="list"
+          id="upload-options"
+        >
+          <!-- Is using <button> better here? -->
+          <li><a href="#">paste text</a></li>
+          <li><a href="#">add URL</a></li>
         </ul>
       </div>
     </header>
