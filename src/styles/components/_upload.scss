@@ -27,8 +27,8 @@ $border-radius: 4px;
     position: absolute;
     top: 100%;
     transform: translateY(-50%);
-    // Handle hover intent by creating a 200ms delay --
-    // this prevents the dropdown from appearing for "drive-by" mouseovers.
+    // Handle hover intent: the delay prevents the
+    // dropdown from appearing for "drive-by" mouseovers.
     transition: all 100ms 200ms ease-out;
 
     .upload:hover &,

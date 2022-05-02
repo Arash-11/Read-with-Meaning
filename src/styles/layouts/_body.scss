@@ -1,0 +1,15 @@
+$max-content-width: 70rem;
+
+body {
+  padding: 1rem;
+  margin-inline: auto;
+  width: 70%;
+  max-width: $max-content-width;
+
+  @include media(large) {
+    & {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}

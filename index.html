@@ -9,12 +9,12 @@
   <body>
     <header class="header">
       <h1 class="logo">Read with Meaning</h1>
-      <div class="header__upload">
-        <!-- Handle aria-expanded with JS -->
+      <div class="header__upload" data-upload>
         <button
           class="upload__btn"
           aria-controls="upload-options"
           aria-expanded="false"
+          data-upload-btn
         >
           upload
         </button>
@@ -22,6 +22,7 @@
           class="upload__options"
           role="list"
           id="upload-options"
+          data-upload-options
         >
           <!-- Is using <button> better here? -->
           <li><a href="#">paste text</a></li>
@@ -29,6 +30,8 @@
         </ul>
       </div>
     </header>
+
+    <main data-main></main>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
