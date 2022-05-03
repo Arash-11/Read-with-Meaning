@@ -8,7 +8,7 @@ export class UploadBtn {
     this._bindEvents();
   }
 
-  _bindEvents() {
+  private _bindEvents(): void {
     this.el.addEventListener('mouseover', this.expandDropdown.bind(this));
     this.el.addEventListener('mouseout', this.shrinkDropdown.bind(this));
     this.el.addEventListener('focusin', this.expandDropdown.bind(this));

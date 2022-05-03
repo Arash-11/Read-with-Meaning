@@ -1,4 +1,5 @@
-import { UploadBtn } from "./components/uploadBtn";
+import { UploadBtn } from "./components/UploadBtn";
+import { URLForm } from "./components/URLForm";
 
 const app = document.querySelector<HTMLElement>('[data-main]')!;
 
@@ -7,6 +8,8 @@ const app = document.querySelector<HTMLElement>('[data-main]')!;
 // The options dropdown's reveal/hide is handled in the CSS.
 new UploadBtn();
 
-app.innerHTML = ``;
+const urlForm = new URLForm();
+
+app.append(urlForm.el);
 
 export {};

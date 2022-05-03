@@ -1,5 +1,10 @@
+// Is !important needed here?
 .hidden {
   display: none;
+}
+
+.visible {
+  display: block;
 }
 
 .desktop-only {

@@ -5,6 +5,7 @@ body {
   margin-inline: auto;
   width: 70%;
   max-width: $max-content-width;
+  font-family: var(--font-family-main);
 
   @include media(large) {
     & {
