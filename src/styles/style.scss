@@ -8,11 +8,13 @@
 @import './base/reset';
 
 /* Component */
-@import './components/upload';
+@import './components/button.scss';
 
 /* Layouts */
 @import './layouts/body';
 @import './layouts/header';
+@import './layouts/main';
+@import './layouts/footer';
 
 /* Util */
 @import './utils/display';

@@ -2,12 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.logo {
-  font-size: var(--font-size-4);
-}
+  &__logo {
+    font-size: var(--font-size-4);
+  }
 
-.header__upload {
-  @extend .upload;
+  &__add-btn {
+    @extend .button;
+    color: inherit;
+    text-decoration: none;
+  }
 }
