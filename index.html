@@ -10,17 +10,15 @@
   <body>
     <header class="header">
       <h1 class="header__logo">Read with Meaning</h1>
-      <a href="/" class="header__add-btn">add new</a>
     </header>
 
     <section class="main" aria-label="about this website" data-about>
       <h2 class="main__about-text">Look up word definitions while reading, with just a click.</h2>
       <div class="main__form-container">
         <p class="main__text">Start reading by pasting in text below.</p>
-        <form class="main__form">
-          <textarea class="main__form__textarea"></textarea>
-          <button class="main__form__btn" disabled>Start reading</button>
-          <!-- <a href="/src/read.html">Start reading</a> -->
+        <form class="main__form" data-input-form>
+          <textarea class="main__form__textarea" data-textarea></textarea>
+          <button class="main__form__btn" disabled data-form-btn>Start reading</button>
         </form>
       </div>
     </section>
@@ -29,6 +27,6 @@
       © Built by <a href="https://arashn.com/" target="blank">Arash11</a>
     </footer>
 
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="./src/main.ts"></script>
   </body>
 </html>
