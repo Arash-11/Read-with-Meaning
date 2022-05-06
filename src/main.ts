@@ -1,5 +1,16 @@
-import InputForm from "./components/InputForm";
+import TextInputForm from "./components/TextInputForm";
+import ReadArea from "./components/ReadArea";
 
-new InputForm();
+const evtName = 'textsubmit'
+const customSubmitEvt: Event = new Event(evtName);
+
+new TextInputForm(customSubmitEvt);
+
+new ReadArea({
+  eventName: evtName,
+  customEvent: customSubmitEvt
+});
+
+window.addEventListener(evtName, () => console.log('custom event fired'));
 
 export {};

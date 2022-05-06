@@ -1,11 +1,12 @@
-import debounce from "../utils/debounce";
-
-export default class InputForm {
+export default class TextInputForm {
+  event: Event;
   formEl: HTMLFormElement;
   textAreaEl: HTMLTextAreaElement;
   submitBtn: HTMLButtonElement;
 
-  constructor() {
+  constructor(event: Event) {
+    this.event = event;
+
     this.formEl = document.querySelector<HTMLFormElement>('[data-input-form]')!;
     this.textAreaEl = this.formEl.querySelector<HTMLTextAreaElement>('[data-textarea]')!;
     this.submitBtn = this.formEl.querySelector<HTMLButtonElement>('[data-form-btn]')!;
@@ -18,15 +19,18 @@ export default class InputForm {
   }
 
   private _bindEvents(): void {
-    this.formEl.addEventListener('submit', this._submitForm.bind(this));
+    this.formEl.addEventListener('submit', (e) => this._submitForm.call(this, e));
     this.textAreaEl.addEventListener('keyup', this.handleTextArea.bind(this));
   }
 
-  private _submitForm(): void {
-    console.log('form submitted');
+  private _submitForm(e: Event): void {
+    e.preventDefault();
+    window.dispatchEvent(this.event);
   }
 
   handleTextArea(): void {
-    console.log('textarea changed');
+    this.textAreaEl.value
+      ? this.submitBtn.removeAttribute('disabled')
+      : this.submitBtn.setAttribute('disabled', '');
   }
 }
