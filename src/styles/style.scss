@@ -8,7 +8,8 @@
 @import './base/reset';
 
 /* Component */
-@import './components/button.scss';
+@import './components/button';
+@import './components//read-mode';
 
 /* Layouts */
 @import './layouts/body';

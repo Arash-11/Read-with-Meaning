@@ -27,11 +27,17 @@ export default class Controller {
   private _onFormSubmit(e: Event): void {
     e.preventDefault();
     this.text = this.textAreaEl.value;
-    this.goToReadPage();
+    this.setReadPage();
   }
 
-  goToReadPage(): void {
-    this.mainEl.innerHTML = this.text;
+  setReadPage(): void {
     this.addNewLink.classList.remove('hidden');
+
+    const spanEl = document.createElement('span');
+    spanEl.innerText = this.text;
+
+    this.mainEl.classList.add('read-mode');
+    this.mainEl.innerHTML = '';
+    this.mainEl.append(spanEl);
   }
 }
