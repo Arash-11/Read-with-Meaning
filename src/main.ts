@@ -1,16 +1,12 @@
+import { StorageProperties } from "./common/types";
+import Storage from "./db/Storage";
+import Controller from "./controller/Controller";
 import TextInputForm from "./components/TextInputForm";
-import ReadArea from "./components/ReadArea";
 
-const evtName = 'textsubmit'
-const customSubmitEvt: Event = new Event(evtName);
+const storage: StorageProperties = new Storage();
 
-new TextInputForm(customSubmitEvt);
+new TextInputForm();
 
-new ReadArea({
-  eventName: evtName,
-  customEvent: customSubmitEvt
-});
-
-window.addEventListener(evtName, () => console.log('custom event fired'));
+new Controller(storage);
 
 export {};
