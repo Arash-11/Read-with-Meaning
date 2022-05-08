@@ -10,7 +10,25 @@
   <body>
     <header class="header">
       <h1 class="header__logo">Read with Meaning</h1>
-      <a href="/" class="header__add-btn hidden" data-add-new>add new</a>
+      <div class="header__settings hidden" data-settings>
+        <button
+          class="settings__btn"
+          aria-controls="settings-options"
+          aria-expanded="false"
+          data-settings-btn
+        >
+          settings
+        </button>
+        <ul
+          class="settings__options"
+          role="list"
+          id="settings-options"
+          data-settings-options
+        >
+          <li><a href="/" title="Redirects to homepage to add new text.">add new</a></li>
+          <li><button title="Removes current text from database.">delete text</button></li>
+        </ul>
+      </div>
     </header>
 
     <main class="main" data-main>

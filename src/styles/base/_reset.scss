@@ -40,6 +40,8 @@ input, button, textarea, select {
 button {
   appearance: none;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
 /* https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html */

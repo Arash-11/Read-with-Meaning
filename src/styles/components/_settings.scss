@@ -1,8 +1,9 @@
 $padding-vertical: 0.6rem;
 $padding-horizontal: 3rem;
 $border-radius: 4px;
+$shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 
-.upload {
+.settings {
   position: relative;
 
   &:hover {
@@ -10,29 +11,28 @@ $border-radius: 4px;
   }
 
   &__btn {
+    @extend .button;
     position: relative;
-    appearance: none;
     background-color: #fff;
-    padding: $padding-vertical $padding-horizontal;
-    border: solid 1px #000;
-    border-radius: $border-radius;
     z-index: 1;
   }
 
   &__options {
-    padding-top: 7px;
+    margin-top: 7px;
     width: 100%;
     visibility: hidden;
     opacity: 0.3;
     position: absolute;
     top: 100%;
+    border-radius: $border-radius;
+    box-shadow: $shadow;
     transform: translateY(-50%);
     // Handle hover intent: the delay prevents the
     // dropdown from appearing for "drive-by" mouseovers.
     transition: all 100ms 200ms ease-out;
 
-    .upload:hover &,
-    .upload:focus-within & {
+    .settings:hover &,
+    .settings:focus-within & {
       visibility: visible;
       opacity: 1;
       transform: translateY(0);
@@ -40,17 +40,15 @@ $border-radius: 4px;
   }
 
   &__options > li {
-    border-style: none solid;
+    background-color: #fff;
     border-width: 1px;
     text-align: center;
 
     &:first-child {
-      border-top-style: solid;
       border-radius: $border-radius $border-radius 0 0;
     }
 
     &:last-child {
-      border-bottom-style: solid;
       border-radius: 0 0 $border-radius $border-radius;
     }
   }
@@ -59,11 +57,11 @@ $border-radius: 4px;
     border-radius: $border-radius $border-radius 0 0;
   }
 
-  &__options > li:last-child > a {
+  &__options > li:last-child > button {
     border-radius: 0 0 $border-radius $border-radius;
   }
 
-  &__options > li > a {
+  &__options > li > * {
     display: inline-block;
     padding: $padding-vertical calc($padding-horizontal / 2);
     width: 100%;

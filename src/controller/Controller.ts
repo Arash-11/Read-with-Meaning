@@ -2,7 +2,7 @@ import { StorageProperties } from "../common/types";
 
 export default class Controller {
   storage: StorageProperties;
-  addNewLink: HTMLAnchorElement;
+  settingsEl: HTMLDivElement;
   mainEl: HTMLElement;
   formEl: HTMLFormElement;
   textAreaEl: HTMLTextAreaElement;
@@ -10,7 +10,7 @@ export default class Controller {
 
   constructor(storage: StorageProperties) {
     this.storage = storage;
-    this.addNewLink = document.querySelector<HTMLAnchorElement>('[data-add-new]')!;
+    this.settingsEl = document.querySelector<HTMLDivElement>('[data-settings]')!;
     this.mainEl = document.querySelector<HTMLElement>('[data-main]')!;
     this.formEl = this.mainEl.querySelector<HTMLFormElement>('[data-input-form]')!;
     this.textAreaEl = this.formEl.querySelector<HTMLTextAreaElement>('[data-textarea]')!;
@@ -31,7 +31,7 @@ export default class Controller {
   }
 
   setReadPage(): void {
-    this.addNewLink.classList.remove('hidden');
+    this.settingsEl.classList.remove('hidden');
 
     const spanEl = document.createElement('span');
     spanEl.innerText = this.text;
