@@ -1,4 +1,5 @@
-import { StorageProperties, TextConstructor } from "../common/types";
+import { StorageProperties } from "../common/types";
+import Text from "../components/Text";
 
 export default class Controller {
   storage: StorageProperties;
@@ -7,18 +8,15 @@ export default class Controller {
   mainEl: HTMLElement;
   formEl: HTMLFormElement;
   textAreaEl: HTMLTextAreaElement;
-  extraFns: Array<TextConstructor>;
   text: string;
 
-  constructor(storage: StorageProperties, extraFns: Array<TextConstructor> = []) {
+  constructor(storage: StorageProperties) {
     this.storage = storage;
     this.headerEl = document.querySelector<HTMLElement>('[data-header]')!;
     this.settingsEl = document.querySelector<HTMLDivElement>('[data-settings]')!;
     this.mainEl = document.querySelector<HTMLElement>('[data-main]')!;
     this.formEl = this.mainEl.querySelector<HTMLFormElement>('[data-input-form]')!;
     this.textAreaEl = this.formEl.querySelector<HTMLTextAreaElement>('[data-textarea]')!;
-
-    this.extraFns = extraFns;
 
     this.text = '';
 
@@ -32,15 +30,15 @@ export default class Controller {
   private _onFormSubmit(e: Event): void {
     e.preventDefault();
     this.text = this.textAreaEl.value;
-    this.setReadPage();
-    if (this.extraFns.length) this.callExtraFns();
+    this.setReadingPage();
+    this.initReadingText();
   }
 
   private _moveFocusToHeader(): void {
     this.headerEl.focus();
   }
 
-  setReadPage(): void {
+  setReadingPage(): void {
     this.settingsEl.classList.remove('hidden');
 
     const spanEl = document.createElement('span');
@@ -53,7 +51,7 @@ export default class Controller {
     this._moveFocusToHeader();
   }
 
-  callExtraFns(): void {
-    this.extraFns.forEach(Fn => new Fn());
+  initReadingText(): void {
+    new Text();
   }
 }
