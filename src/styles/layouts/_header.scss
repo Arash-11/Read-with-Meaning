@@ -3,6 +3,10 @@
   justify-content: space-between;
   align-items: center;
 
+  &:focus {
+    outline: none;
+  }
+
   &__logo {
     font-size: var(--font-size-4);
   }
