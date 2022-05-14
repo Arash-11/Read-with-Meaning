@@ -1,12 +1,22 @@
 export default class DictionaryApi {
-  apiEndpoint: object;
+  apiBaseEndpoint: URL;
 
   constructor() {
     const baseUrl = 'https://api.dictionaryapi.dev';
-    this.apiEndpoint = new URL('/api/v2/entries/en/', baseUrl);
+    this.apiBaseEndpoint = new URL('/api/v2/entries/en/', baseUrl);
   }
 
-  sendRequest() {
-    console.log(this.apiEndpoint);
+  getDefinition(word: string): string {
+    const url = this.createRequestURL(word);
+
+    return url;
+  }
+
+  createRequestURL(word: string) {
+    const { href: baseHref } = this.apiBaseEndpoint;
+    const requestEndpoint: URL = new URL(word, baseHref);
+    const { href: requestHref } = requestEndpoint;
+
+    return requestHref;
   }
 }

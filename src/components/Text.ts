@@ -14,18 +14,6 @@ export default class Text {
   }
 
   private _bindEvents(): void {
-    // ['dblclick', 'mouseup'].forEach((event) => {
-    //   this.mainEl.addEventListener(event, (e: Event) => {
-    //     // This is mostly to prevent the `mouseup` event from firing when `dbclick` is what we want to fire.
-    //     // According to MDN:
-    //     // "If several listeners are attached to the same element for the same event type,
-    //     // they are called in the order in which they were added."
-    //     e.stopImmediatePropagation();
-    //     console.log('e: ', e);
-    //     return this.getWordDefinition.call(this);
-    //   });
-    // });
-
     this.mainEl.addEventListener('click', this.getWordDefinition.bind(this));
   }
 
@@ -37,32 +25,42 @@ export default class Text {
     const { startOffset } = range;
     const { textContent } = node;
 
-    let rangeStart = null;
+    if (!textContent) return '';
+
+    let rangeStartText = '';
     let word = null;
 
-    // console.log(startOffset);
-
+    // If start of text is clicked, select the first word in the text.
     if (startOffset === 0) {
-      word = textContent?.match(/(\w+)/g)![0];
+      word = textContent.match(/(\w+)/g)![0];
     } else {
-      for (let i = startOffset; textContent?.substring(i === 0 ? 0 : i - 1, i) !== ' '; i--) {
-        rangeStart = textContent?.substring(i - 1);
+      // Iterate backwards from the position (basically, the letter in a word) that was clicked,
+      // until an empty space is encountered -- this indicates we've reached the start of a word.
+      for (let i = startOffset; textContent?.substring(i - 1, i) !== ' '; i--) {
+        rangeStartText = textContent.substring(i - 1);
+        // Break out of the loop if you've reached the start of the first word in the text.
+        if (i === 0) {
+          rangeStartText = textContent;
+          break;
+        }
       }
 
-      // Find word
-      word = rangeStart!.match(/(\w+)/g)![0];
+      // If a user highlights a text, set the word to that highlighted text.
+      // Otherwise, it will be the first word in the "cut-off" text that we got after
+      // iterating backwards, as defined in the for-loop above, or an empty string.
+      word = selection.toString()
+        ? selection.toString()
+        : rangeStartText
+        ? rangeStartText.match(/(\w+)/g)![0]
+        : '';
     }
 
-    console.log(word);
-    
-
-    // return word;
+    return word.trim();
   }
 
   getWordDefinition(): void {
     const word: string = this.selectedWord;
-    // console.log(word);
 
-    // this.dictionaryApi.sendRequest(this.highlightedText);
+    this.dictionaryApi.getDefinition(word);
   }
 }
