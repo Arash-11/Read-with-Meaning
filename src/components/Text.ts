@@ -14,7 +14,7 @@ export default class Text {
   }
 
   private _bindEvents(): void {
-    this.mainEl.addEventListener('click', this.getWordDefinition.bind(this));
+    this.mainEl.addEventListener('click', this.handleTextClick.bind(this));
   }
 
   get selectedWord(): string {
@@ -55,12 +55,20 @@ export default class Text {
         : '';
     }
 
-    return word.trim();
+    return word.trim().toLowerCase();
   }
 
-  getWordDefinition(): void {
+  async getWordDefinition(): Promise<void> {
     const word: string = this.selectedWord;
 
-    this.dictionaryApi.getDefinition(word);
+    if (word === '') return;
+
+    const definition = await this.dictionaryApi.getDefinition(word);
+
+    console.log('definition: ', definition);
+  }
+
+  handleTextClick(): void {
+    this.getWordDefinition();
   }
 }

@@ -49,9 +49,16 @@ export default class Controller {
     this.mainEl.append(spanEl);
 
     this._moveFocusToHeader();
+
+    // this.setPageHistory();
   }
 
   initReadingText(): void {
     new Text();
   }
+
+  // setPageHistory(): void {
+  //   const url = new URL('/read', window.location.href);
+  //   window.history.pushState({}, '', url);
+  // }
 }

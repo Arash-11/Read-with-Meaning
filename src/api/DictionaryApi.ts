@@ -6,10 +6,17 @@ export default class DictionaryApi {
     this.apiBaseEndpoint = new URL('/api/v2/entries/en/', baseUrl);
   }
 
-  getDefinition(word: string): string {
+  async getDefinition(word: string): Promise<string | void> {
     const url = this.createRequestURL(word);
 
-    return url;
+    try {
+      const response = await fetch(url);
+      const result = await response.json();
+      const { definition } = result[0].meanings[0].definitions[0];
+      return definition;
+    } catch (error) {
+      return console.error(error);
+    }
   }
 
   createRequestURL(word: string) {
