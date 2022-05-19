@@ -27,20 +27,28 @@ export default class Text {
 
     if (!textContent) return '';
 
+    // Limit `endOffset` to additional 50 boundary points in the range.
+    // This is to avoid grabbing entire large batches of texts unnecessarily, since doing that
+    // will cause performance issues with large amounts of text (eg. a 50-page PDF).
+    const endOffset = startOffset + 50;
     let rangeStartText = '';
     let word = null;
 
-    // If start of text is clicked, select the first word in the text.
+    // If start of text (i.e. area right before the first letter of the first word) is clicked,
+    // select the first word in the text.
     if (startOffset === 0) {
-      word = textContent.match(/(\w+)/g)![0];
+      const textToProcess = textContent.substring(0, endOffset);
+      word = textToProcess.match(/(\w+)/g)![0];
     } else {
-      // Iterate backwards from the position (basically, the letter in a word) that was clicked,
+      // Iterate backwards from the position (i.e. the letter in a word) that was clicked,
       // until an empty space is encountered -- this indicates we've reached the start of a word.
-      for (let i = startOffset; textContent?.substring(i - 1, i) !== ' '; i--) {
-        rangeStartText = textContent.substring(i - 1);
+      for (let i = startOffset; textContent.substring(i - 1, i) !== ' '; i--) {
+        rangeStartText = textContent.substring(i - 1, endOffset);
         // Break out of the loop if you've reached the start of the first word in the text.
+        // This will be used when you click anywhere in the first letter in the text,
+        // except the area right before the first letter.
         if (i === 0) {
-          rangeStartText = textContent;
+          rangeStartText = textContent.substring(0, endOffset);
           break;
         }
       }
