@@ -20,10 +20,7 @@ export default class DictionaryApi {
   }
 
   createRequestURL(word: string) {
-    const { href: baseHref } = this.apiBaseEndpoint;
-    const requestEndpoint: URL = new URL(word, baseHref);
-    const { href: requestHref } = requestEndpoint;
-
-    return requestHref;
+    const requestEndpoint: URL = new URL(word, this.apiBaseEndpoint.href);
+    return requestEndpoint.href;
   }
 }

@@ -1,13 +1,20 @@
 import DictionaryApi from "../api/DictionaryApi";
 
+interface WordDefinitionProperties {
+  word: string;
+  definition: string;
+}
+
 export default class Text {
   mainEl: HTMLElement;
+  textWrapperEl: HTMLParagraphElement;
   text: string;
   dictionaryApi: object;
 
   constructor() {
     this.mainEl = document.querySelector<HTMLElement>('[data-main]')!;
-    this.text = this.mainEl.querySelector<HTMLSpanElement>('span')!.innerText;
+    this.textWrapperEl = this.mainEl.querySelector<HTMLParagraphElement>('[data-text]')!;
+    this.text = this.textWrapperEl.innerText;
     this.dictionaryApi = new DictionaryApi();
 
     this._bindEvents();
@@ -25,7 +32,7 @@ export default class Text {
     const { startOffset } = range;
     const { textContent } = node;
 
-    if (!textContent) return '';
+    if (!textContent?.trim()) return '';
 
     // Limit `endOffset` to additional 50 boundary points in the range.
     // This is to avoid grabbing entire large batches of texts unnecessarily, since doing that
@@ -66,17 +73,21 @@ export default class Text {
     return word.trim().toLowerCase();
   }
 
-  async getWordDefinition(): Promise<void> {
+  async getWordDefinition(): Promise<WordDefinitionProperties | void> {
     const word: string = this.selectedWord;
 
-    if (word === '') return;
+    const definition = word === ''
+      ? null
+      : await this.dictionaryApi.getDefinition(word);
 
-    const definition = await this.dictionaryApi.getDefinition(word);
-
-    console.log('definition: ', definition);
+    return { word, definition };
   }
 
-  handleTextClick(): void {
-    this.getWordDefinition();
+  async handleTextClick(): Promise<void> {    
+    const { word, definition } = await this.getWordDefinition();
+
+    if (!word || !definition) return;
+
+    console.log(`${word}: ${definition}`);
   }
 }
