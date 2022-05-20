@@ -17,11 +17,29 @@ export default class Text {
     this.text = this.textWrapperEl.innerText;
     this.dictionaryApi = new DictionaryApi();
 
+    this.wrapNodesInTags();
     this._bindEvents();
   }
 
   private _bindEvents(): void {
     this.mainEl.addEventListener('click', this.handleTextClick.bind(this));
+  }
+
+  wrapNodesInTags(): void {
+    this.textWrapperEl.childNodes.forEach(childNode => {
+      if (childNode.textContent == null) return;
+
+      if (childNode.nodeName === '#text') {
+        const pEl: HTMLParagraphElement = document.createElement('p');
+        pEl.innerHTML = childNode.textContent;
+        childNode.replaceWith(pEl);
+      } else if (childNode.nodeName === 'BR') {
+        const pEl: HTMLParagraphElement = document.createElement('p');
+        pEl.classList.add('empty-para');
+        pEl.innerHTML = '\n';
+        childNode.replaceWith(pEl);
+      }
+    });
   }
 
   get selectedWord(): string {
