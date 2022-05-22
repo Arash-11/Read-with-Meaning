@@ -22,7 +22,7 @@ export default class Text {
   }
 
   private _bindEvents(): void {
-    this.mainEl.addEventListener('click', this.handleTextClick.bind(this));
+    this.textWrapperEl.addEventListener('click', (e) => this.handleTextClick.call(this, e));
   }
 
   wrapNodesInTags(): void {
@@ -65,9 +65,10 @@ export default class Text {
       const textToProcess = textContent.substring(0, endOffset);
       word = textToProcess.match(/(\w+)/g)![0];
     } else {
-      // Iterate backwards from the position (i.e. the letter in a word) that was clicked,
-      // until an empty space is encountered -- this indicates we've reached the start of a word.
-      for (let i = startOffset; textContent.substring(i - 1, i) !== ' '; i--) {
+      // Iterate backwards from the position (i.e. the letter in a word) that was clicked
+      // until a non-letter is encountered -- eg. a space (which will probably mean the start of a word),
+      // a punctuation mark, words with numbers in them that aren't in the dictionary, etc.
+      for (let i = startOffset; (/[a-zA-Z]/).test(textContent.substring(i - 1, i)); i--) {
         rangeStartText = textContent.substring(i - 1, endOffset);
         // Break out of the loop if you've reached the start of the first word in the text.
         // This will be used when you click anywhere in the first letter in the text,
@@ -101,7 +102,12 @@ export default class Text {
     return { word, definition };
   }
 
-  async handleTextClick(): Promise<void> {    
+  async handleTextClick(e: Event): Promise<void> {
+    // Ignore any additional consecutive additional clicks.
+    // This will help prevent the `getWordDefinition` function from unnecessarily firing more than once
+    // (eg. when a user double clicks).
+    if (e.detail > 1) return;
+
     const { word, definition } = await this.getWordDefinition();
 
     if (!word || !definition) return;
