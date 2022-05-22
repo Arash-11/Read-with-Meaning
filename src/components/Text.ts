@@ -89,6 +89,9 @@ export default class Text {
         : '';
     }
 
+    // Only letters are accepted at the moment (numbers, symbols, etc. are invalid).
+    if ( !(/[a-zA-Z]/).test(word) ) return '';
+
     return word.trim().toLowerCase();
   }
 
