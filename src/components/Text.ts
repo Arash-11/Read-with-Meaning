@@ -50,6 +50,8 @@ export default class Text {
     const { startOffset } = range;
     const { textContent } = node;
 
+    const lettersOnlyRegex = /^[a-zA-Z]+$/;
+
     if (!textContent?.trim()) return '';
 
     // Limit `endOffset` to additional 50 boundary points in the range.
@@ -68,7 +70,7 @@ export default class Text {
       // Iterate backwards from the position (i.e. the letter in a word) that was clicked
       // until a non-letter is encountered -- eg. a space (which will probably mean the start of a word),
       // a punctuation mark, words with numbers in them that aren't in the dictionary, etc.
-      for (let i = startOffset; (/^[a-zA-Z]+$/).test(textContent.substring(i - 1, i)); i--) {
+      for (let i = startOffset; lettersOnlyRegex.test(textContent.substring(i - 1, i)); i--) {
         rangeStartText = textContent.substring(i - 1, endOffset);
         // Break out of the loop if you've reached the start of the first word in the text.
         // This will be used when you click anywhere in the first letter in the text,
@@ -90,7 +92,7 @@ export default class Text {
     }
 
     // Only letters are accepted at the moment (numbers, symbols, etc. are invalid).
-    if ( !(/^[a-zA-Z]+$/).test(word) ) return '';
+    if ( !lettersOnlyRegex.test(word) ) return '';
 
     return word.trim().toLowerCase();
   }
