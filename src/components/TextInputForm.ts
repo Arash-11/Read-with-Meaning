@@ -12,7 +12,7 @@ export default class TextInputForm {
   }
 
   init(): void {
-    this.textAreaEl.addEventListener('keyup', this.handleTextArea.bind(this));
+    this.textAreaEl.addEventListener('input', this.handleTextArea.bind(this));
   }
 
   handleTextArea(): void {
