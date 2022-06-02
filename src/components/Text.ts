@@ -110,7 +110,7 @@ export default class Text {
   async handleTextClick(e: Event): Promise<void> {
     // Ignore any additional consecutive additional clicks.
     // This will help prevent the `getWordDefinition` function from unnecessarily firing more than once
-    // (eg. when a user double clicks).
+    // (eg. when a user double clicks to highlight a word).
     if (e.detail > 1) return;
 
     const { word, definition } = await this.getWordDefinition();
