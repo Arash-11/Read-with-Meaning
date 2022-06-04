@@ -1,15 +1,16 @@
+import { DictionaryApiProperties } from "../common/types";
 import DictionaryApi from "../api/DictionaryApi";
 
 interface WordDefinitionProperties {
   word: string;
-  definition: string;
+  definition: string | void | null;
 }
 
 export default class Text {
   mainEl: HTMLElement;
   textWrapperEl: HTMLParagraphElement;
   text: string;
-  dictionaryApi: object;
+  dictionaryApi: DictionaryApiProperties;
 
   constructor() {
     this.mainEl = document.querySelector<HTMLElement>('[data-main]')!;
@@ -97,7 +98,7 @@ export default class Text {
     return word.trim().toLowerCase();
   }
 
-  async getWordDefinition(): Promise<WordDefinitionProperties | void> {
+  async getWordDefinition(): Promise<WordDefinitionProperties> {
     const word: string = this.selectedWord;
 
     const definition = word === ''
@@ -107,7 +108,7 @@ export default class Text {
     return { word, definition };
   }
 
-  async handleTextClick(e: Event): Promise<void> {
+  async handleTextClick(e: MouseEvent | PointerEvent): Promise<void> {
     // Ignore any additional consecutive additional clicks.
     // This will help prevent the `getWordDefinition` function from unnecessarily firing more than once
     // (eg. when a user double clicks to highlight a word).

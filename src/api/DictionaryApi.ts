@@ -1,4 +1,6 @@
-export default class DictionaryApi {
+import { DictionaryApiProperties } from "../common/types";
+
+export default class DictionaryApi implements DictionaryApiProperties {
   apiBaseEndpoint: URL;
 
   constructor() {
@@ -19,7 +21,7 @@ export default class DictionaryApi {
     }
   }
 
-  createRequestURL(word: string) {
+  createRequestURL(word: string): string {
     const requestEndpoint: URL = new URL(word, this.apiBaseEndpoint.href);
     return requestEndpoint.href;
   }

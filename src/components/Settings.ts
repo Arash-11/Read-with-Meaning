@@ -16,7 +16,7 @@ export default class Settings {
     this.el.addEventListener('focusout', this.shrinkDropdown.bind(this));
   }
 
-  get isDropdownInFocus(): Boolean {
+  get isDropdownInFocus(): boolean {
     return !!document.querySelector('[data-settings]:focus-within');
   }
 
