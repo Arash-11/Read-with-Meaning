@@ -2,7 +2,7 @@
 @import './mixins/breakpoints';
 
 /* Tokens */
-@import './tokens/font';
+@import './tokens/tokens';
 
 /* Base */
 @import './base/reset';
@@ -11,6 +11,7 @@
 @import './components/button';
 @import './components/settings';
 @import './components/read-mode';
+@import './components/banner';
 
 /* Layouts */
 @import './layouts/body';

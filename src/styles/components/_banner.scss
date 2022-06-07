@@ -1,0 +1,23 @@
+$padding-vertical: 1.6rem;
+
+.banner {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: white;
+  padding: $padding-vertical var(--btn-padding-horizontal);
+  border-radius: var(--btn-border-radius);
+  box-shadow: var(--box-shadow-1);
+
+  &__text {
+    max-width: 90%;
+    font-size: var(--font-size-1);
+  }
+
+  &__btn {
+    padding: 0 4px;
+    font-size: var(--font-size-4);
+    line-height: 1;
+  }
+}

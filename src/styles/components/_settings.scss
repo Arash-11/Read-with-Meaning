@@ -1,8 +1,3 @@
-$padding-vertical: 0.6rem;
-$padding-horizontal: 3rem;
-$border-radius: 4px;
-$shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-
 .settings {
   position: relative;
 
@@ -24,8 +19,8 @@ $shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     opacity: 0.3;
     position: absolute;
     top: 100%;
-    border-radius: $border-radius;
-    box-shadow: $shadow;
+    border-radius: var(--btn-border-radius);
+    box-shadow: var(--box-shadow-1);
     transform: translateY(-50%);
     // Handle hover intent: the delay prevents the
     // dropdown from appearing for "drive-by" mouseovers.
@@ -45,25 +40,25 @@ $shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     text-align: center;
 
     &:first-child {
-      border-radius: $border-radius $border-radius 0 0;
+      border-radius: var(--btn-border-radius) var(--btn-border-radius) 0 0;
     }
 
     &:last-child {
-      border-radius: 0 0 $border-radius $border-radius;
+      border-radius: 0 0 var(--btn-border-radius) var(--btn-border-radius);
     }
   }
 
   &__options > li:first-child > a {
-    border-radius: $border-radius $border-radius 0 0;
+    border-radius: var(--btn-border-radius) var(--btn-border-radius) 0 0;
   }
 
   &__options > li:last-child > button {
-    border-radius: 0 0 $border-radius $border-radius;
+    border-radius: 0 0 var(--btn-border-radius)s var(--btn-border-radius)s;
   }
 
   &__options > li > * {
     display: inline-block;
-    padding: $padding-vertical calc($padding-horizontal / 2);
+    padding: var(--btn-padding-vertical) calc(var(--btn-padding-horizontal) / 2);
     width: 100%;
     color: inherit;
     text-decoration: none;

@@ -1,13 +1,9 @@
-$padding-vertical: 0.6rem;
-$padding-horizontal: 3rem;
-$border-radius: 4px;
-
 .button {
   appearance: none;
   background-color: #fff;
-  padding: $padding-vertical $padding-horizontal;
+  padding: var(--btn-padding-vertical) var(--btn-padding-horizontal);
   border: solid 1px #000;
-  border-radius: $border-radius;
+  border-radius: var(--btn-border-radius);
 
   &:disabled {
     cursor: default;
