@@ -1,7 +1,10 @@
 $padding-vertical: 1.6rem;
 
 .banner {
+  width: 100%;
+  max-width: var(--max-content-width);
   position: absolute;
+  bottom: 6rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -9,6 +12,16 @@ $padding-vertical: 1.6rem;
   padding: $padding-vertical var(--btn-padding-horizontal);
   border-radius: var(--btn-border-radius);
   box-shadow: var(--box-shadow-1);
+  opacity: 0.3;
+  transform: translateY(50%);
+  visibility: hidden;
+  transition: all 100ms 0ms ease-out;
+
+  &[data-visible] {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
 
   &__text {
     max-width: 90%;
@@ -19,5 +32,11 @@ $padding-vertical: 1.6rem;
     padding: 0 4px;
     font-size: var(--font-size-4);
     line-height: 1;
+    opacity: 0.5;
+    transition: opacity 300ms;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }

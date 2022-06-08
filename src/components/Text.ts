@@ -1,10 +1,6 @@
-import { DictionaryApiProperties } from "../common/types";
+import { DictionaryApiProperties, WordDefinitionProperties } from "../common/types";
 import DictionaryApi from "../api/DictionaryApi";
-
-interface WordDefinitionProperties {
-  word: string;
-  definition: string | void | null;
-}
+import Banner from "./Banner";
 
 export default class Text {
   mainEl: HTMLElement;
@@ -118,6 +114,10 @@ export default class Text {
 
     if (!word || !definition) return;
 
-    console.log(`${word}: ${definition}`);
+    this.displayDefinition({ word, definition });
+  }
+
+  displayDefinition({ word, definition }: WordDefinitionProperties): void {
+    Banner.display({ word, definition });
   }
 }

@@ -8,18 +8,6 @@
     <link rel="stylesheet" href="./src/styles/style.scss">
   </head>
   <body>
-    <template>
-      <aside class="banner">
-        <p class="banner__text"></p>
-        <button
-          class="banner__btn"
-          aria-label="Button to close the banner."
-        >
-          &#10799;
-        </button>
-      </aside>
-    </template>
-
     <header class="header" tabindex="-1" data-header>
       <h1 class="header__logo">Read with Meaning</h1>
       <div class="header__settings hidden" data-settings>
@@ -72,6 +60,17 @@
         </form>
       </div>
     </main>
+
+    <aside class="banner" data-banner>
+      <p class="banner__text" data-banner-text></p>
+      <button
+        class="banner__btn"
+        aria-label="Button to close the banner."
+        data-banner-close-btn
+      >
+        &#10799;
+      </button>
+    </aside>
 
     <footer class="footer">
       Built by <a href="https://arashn.com/" target="blank">Arash11</a>
