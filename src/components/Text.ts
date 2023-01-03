@@ -28,7 +28,7 @@ export default class Text {
 
       if (childNode.nodeName === '#text') {
         const pEl: HTMLParagraphElement = document.createElement('p');
-        pEl.innerHTML = childNode.textContent;
+        pEl.textContent = childNode.textContent;
         childNode.replaceWith(pEl);
       } else if (childNode.nodeName === 'BR') {
         const pEl: HTMLParagraphElement = document.createElement('p');

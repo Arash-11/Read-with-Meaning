@@ -1,5 +1,11 @@
 .settings {
   position: relative;
+  transition: box-shadow 100ms 200ms ease-out;
+
+  &:hover,
+  &:focus-within {
+    box-shadow: var(--box-shadow-1);
+  }
 
   &:hover {
     cursor: pointer;
@@ -10,10 +16,16 @@
     position: relative;
     background-color: #fff;
     z-index: 1;
+    transition: border 100ms 200ms ease-out;
+
+    .settings:hover &,
+    .settings:focus-within & {
+      border-color: #ccc;
+    }
   }
 
   &__options {
-    margin-top: 7px;
+    padding-top: 7px;
     width: 100%;
     visibility: hidden;
     opacity: 0.3;
@@ -53,7 +65,7 @@
   }
 
   &__options > li:last-child > button {
-    border-radius: 0 0 var(--btn-border-radius)s var(--btn-border-radius)s;
+    border-radius: 0 0 var(--btn-border-radius) var(--btn-border-radius);
   }
 
   &__options > li > * {
