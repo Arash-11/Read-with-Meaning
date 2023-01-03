@@ -1,4 +1,4 @@
-import { StorageProperties } from "../common/types";
+// import { StorageProperties } from "../common/types";
 
 export default class Storage {
   indexedDB: IDBFactory;
@@ -6,6 +6,7 @@ export default class Storage {
     new(): IDBTransaction;
     prototype: IDBTransaction;
   };
+  db: IDBDatabase | null;
 
   constructor() {
     this.indexedDB = window.indexedDB;
